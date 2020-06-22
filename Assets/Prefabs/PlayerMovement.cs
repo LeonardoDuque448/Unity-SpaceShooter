@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCode : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     // Start is called before the first frame update
     public float speed = 5f;
@@ -30,4 +30,5 @@ public class PlayerCode : MonoBehaviour
     {
         rb.MovePosition(transform.position + new Vector3(x, y, 0f) * speed * Time.deltaTime);
     }
+  
 }

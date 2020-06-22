@@ -26,8 +26,8 @@ public class meteorito : MonoBehaviour
 
 
     }
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    Destroy(this.gameObject);
-    //}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(this.gameObject);
+    }
 }
