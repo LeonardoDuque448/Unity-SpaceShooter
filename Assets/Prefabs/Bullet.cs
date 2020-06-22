@@ -2,35 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class meteorito : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
-    public float speed = 1f;
+    public float speed = 20f;
     public float DamageAmaount = 10f;
-
     private Rigidbody2D rb;
 
-   
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = Vector2.down * speed;
+        rb.velocity = Vector2.up * speed;
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("meteoro"))
         {
-            PlayerHp player = collision.gameObject.GetComponent<PlayerHp>();
-           
-            if (player != null)
+            meteorito meteoro = collision.gameObject.GetComponent<meteorito>();
+            if (meteoro != null)
             {
-                Debug.Log("collision");
-                player.Damage(DamageAmaount);
+                Destroy(collision.gameObject);
                 Destroy(this.gameObject);
 
             }
         }
-
-        
     }
 }

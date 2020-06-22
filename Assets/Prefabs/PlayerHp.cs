@@ -4,15 +4,41 @@ using UnityEngine;
 
 public class PlayerHp : MonoBehaviour
 {
-    public int hp = 100;
-    int damage = 25;
-    // Update is called once per frame
-    private void OnCollisionEnter2D(Collision2D collision)
+    public float hpmax = 100f;
+    public float currentHP;
+    public float timeBetweenShots = 0.2f;
+    public GameObject bulletprefab;
+    public Transform bulletorigin;
+    private float TimeOfLastShot;
+
+    public void Start()
     {
-        hp = hp - damage;
-        if (hp <= 0)
+        currentHP = hpmax;
+    }
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (Time.time > TimeOfLastShot + timeBetweenShots)
+                shoot();
+
+           
+        }
+    }
+    public void Damage(float amount)
+    {
+        currentHP -= amount;
+
+        
+        if (currentHP <= 0f)
         {
             Debug.Log("game over");
+            Destroy(this.gameObject);
         }
+    }
+    private void shoot() 
+    {
+        Instantiate(bulletprefab, bulletorigin.position, bulletorigin.rotation);
+        TimeOfLastShot = Time.time;
     }
 }
