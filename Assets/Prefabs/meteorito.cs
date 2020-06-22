@@ -15,7 +15,7 @@ public class meteorito : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = Vector2.down;
+        rb.velocity = Vector2.down * speed;
     }
 
     // Update is called once per frame
@@ -26,8 +26,8 @@ public class meteorito : MonoBehaviour
 
 
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Destroy(this.gameObject);
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    Destroy(this.gameObject);
+    //}
 }
