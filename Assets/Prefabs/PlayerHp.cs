@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHp : MonoBehaviour
 {
@@ -10,10 +11,12 @@ public class PlayerHp : MonoBehaviour
     public GameObject bulletprefab;
     public Transform bulletorigin;
     private float TimeOfLastShot;
+    public Text HPText;
 
     public void Start()
     {
         currentHP = hpmax;
+        HPText.text = "shields: " + currentHP;
     }
     public void Update()
     {
@@ -28,10 +31,11 @@ public class PlayerHp : MonoBehaviour
     public void Damage(float amount)
     {
         currentHP -= amount;
-
+        HPText.text = "shields: " + currentHP;
         
         if (currentHP <= 0f)
         {
+            
             Debug.Log("game over");
             Destroy(this.gameObject);
         }

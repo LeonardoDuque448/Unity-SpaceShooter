@@ -20,6 +20,8 @@ public class Bullet : MonoBehaviour
             meteorito meteoro = collision.gameObject.GetComponent<meteorito>();
             if (meteoro != null)
             {
+
+                FindObjectOfType<Score>().addpoints(10);
                 Destroy(collision.gameObject);
                 Destroy(this.gameObject);
 
