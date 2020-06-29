@@ -5,6 +5,8 @@ using UnityEngine;
 public class spawner : MonoBehaviour
 {
     public GameObject prefab;
+   
+
     public float timeBetweenSpawns = 1f;
    private void Start()
     {
@@ -12,10 +14,12 @@ public class spawner : MonoBehaviour
     }
     void Spawn()
     { 
-        float x = Random.Range(-4f, 4f);
+        float x = Random.Range(-4f, 9f);
         Vector3 position = new Vector3(x, transform.position.y, 0f);
         Instantiate(prefab, position, Quaternion.identity);
+        
+       
     }
-
    
+
 }

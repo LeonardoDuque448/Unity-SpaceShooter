@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - meteoro
+  - Enemigo
   layers:
   - Default
   - TransparentFX
