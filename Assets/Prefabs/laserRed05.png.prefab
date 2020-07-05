@@ -145,4 +145,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: -15
-  DamageAmaount: 20
+  DamageAmaount: 18
