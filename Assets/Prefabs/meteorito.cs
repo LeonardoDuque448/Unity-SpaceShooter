@@ -7,9 +7,11 @@ public class meteorito : MonoBehaviour
     public float speed = 1f;
     public float DamageAmaount = 10f;
 
+    public GameObject Particleprefab;
+
     private Rigidbody2D rb;
 
-   
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -21,16 +23,22 @@ public class meteorito : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerHp player = collision.gameObject.GetComponent<PlayerHp>();
-           
+
             if (player != null)
             {
-                Debug.Log("collision");
+
                 player.Damage(DamageAmaount);
-                Destroy(this.gameObject);
+                Destroymeteoro();
 
             }
         }
 
-        
+
+    }
+    public void Destroymeteoro()
+    {
+        GameObject particles = Instantiate(Particleprefab, transform.position, transform.rotation);
+        Destroy (particles,5f);
+        Destroy(this.gameObject);
     }
 }

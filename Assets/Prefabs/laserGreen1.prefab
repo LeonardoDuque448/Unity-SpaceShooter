@@ -125,6 +125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   DamageAmaount: 15
+  Hitparticle: {fileID: 6578714762167774885, guid: 2e5980dbce7f2944c9c3bc938cee41fd,
+    type: 3}
 --- !u!50 &8965959708993185977
 Rigidbody2D:
   serializedVersion: 4

@@ -12,6 +12,7 @@ public class PlayerHp : MonoBehaviour
     public Transform bulletorigin;
     private float TimeOfLastShot;
     public Text HPText;
+    public GameObject Deathparticleprefab;
 
     public void Start()
     {
@@ -35,14 +36,14 @@ public class PlayerHp : MonoBehaviour
         
         if (currentHP <= 0f)
         {
-            
+            Instantiate(Deathparticleprefab, transform.position, transform.rotation);
             Debug.Log("game over");
             Destroy(this.gameObject);
         }
     }
     private void shoot() 
     {
-        Instantiate(bulletprefab, bulletorigin.position, bulletorigin.rotation);
+        GameObject particle = Instantiate(bulletprefab, bulletorigin.position, bulletorigin.rotation);
         TimeOfLastShot = Time.time;
     }
 }

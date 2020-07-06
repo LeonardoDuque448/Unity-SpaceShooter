@@ -14,7 +14,7 @@ public class spawner : MonoBehaviour
     }
     void Spawn()
     { 
-        float x = Random.Range(-4f, 9f);
+        float x = Random.Range(-9f, 9f);
         Vector3 position = new Vector3(x, transform.position.y, 0f);
         Instantiate(prefab, position, Quaternion.identity);
         
