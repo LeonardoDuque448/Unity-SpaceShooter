@@ -14,6 +14,8 @@ public class PlayerHp : MonoBehaviour
     public Text HPText;
     public GameObject Deathparticleprefab;
 
+    public AudioClip disparo;
+
     public void Start()
     {
         currentHP = hpmax;
@@ -45,5 +47,7 @@ public class PlayerHp : MonoBehaviour
     {
         GameObject particle = Instantiate(bulletprefab, bulletorigin.position, bulletorigin.rotation);
         TimeOfLastShot = Time.time;
+
+        AudioSource.PlayClipAtPoint(disparo, transform.position, 1f);
     }
 }

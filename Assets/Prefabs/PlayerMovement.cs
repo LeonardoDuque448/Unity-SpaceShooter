@@ -10,10 +10,29 @@ public class PlayerMovement : MonoBehaviour
 
     float x;
     float y;
+    float bottomLimit;
+    float topLimit;
+    float rightLimit;
+    float leftLimit;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+
+        Vector3 bottomleft = Camera.main.ViewportToWorldPoint(Vector3.zero);
+        bottomLimit = bottomleft.y;
+        leftLimit = bottomleft.x;
+
+        Vector3 topright = Camera.main.ViewportToWorldPoint(Vector3.one);
+        topLimit = topright.y;
+        rightLimit = topright.x;
+
+        bottomLimit += renderer.bounds.extents.y;
+        topLimit -= renderer.bounds.extents.y;
+        leftLimit += renderer.bounds.extents.x;
+        rightLimit -= renderer.bounds.extents.x;
+
     }
     // Update is called once per frame
     void Update()
@@ -28,7 +47,13 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.MovePosition(transform.position + new Vector3(x, y, 0f) * speed * Time.deltaTime);
+        Vector3 desiredposition = transform.position + new Vector3(x, y, 0f) * speed * Time.fixedDeltaTime;
+
+        desiredposition.x = Mathf.Clamp(desiredposition.x, leftLimit, rightLimit);
+
+        desiredposition.y = Mathf.Clamp(desiredposition.y, bottomLimit, topLimit);
+
+        rb.MovePosition(desiredposition);
     }
   
 }
