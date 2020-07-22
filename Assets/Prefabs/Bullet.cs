@@ -13,21 +13,23 @@ public class Bullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.up * speed;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //if (collision.gameObject.CompareTag("Enemigo"))
-        //{
-        //    EnemyHP enemigo = collision.gameObject.GetComponent<EnemyHP>();
-        //    if (enemigo != null)
-        //    {
+    
+  
+     private void OnTriggerEnter2D(Collider2D collision)
+     {
+        if (collision.gameObject.CompareTag("Enemigo"))
+        {
+            EnemyHP enemigo = collision.gameObject.GetComponent<EnemyHP>();
+            if (enemigo != null)
+            {
 
-        //        FindObjectOfType<Score>().addpoints(10);
-        //        enemigo.Damage(DamageAmaount);
-        //        Destroy(this.gameObject);
+                FindObjectOfType<Score>().addpoints(25);
+                enemigo.Damage(DamageAmaount);
+                Destroy(this.gameObject);
 
-        //    }
+            }
 
-        //}
+        }
         if (collision.gameObject.CompareTag("meteoro"))
         {
             meteorito Meteorito = collision.gameObject.GetComponent<meteorito>();
@@ -35,15 +37,20 @@ public class Bullet : MonoBehaviour
             {
 
                 FindObjectOfType<Score>().addpoints(10);
-
                 Meteorito.Destroymeteoro();
-
+                
+                GameObject particles = Instantiate(Hitparticle, transform.position, transform.rotation);
+                Destroy(particles, 5f);
+                Destroy(this.gameObject);
             }
 
+           
         }
-        GameObject particles = Instantiate(Hitparticle, transform.position, transform.rotation);
-        Destroy(particles, 5f);
-        Destroy(this.gameObject);
-    }
+     }
+
+
 
 }
+
+
+       

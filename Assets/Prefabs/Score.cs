@@ -8,8 +8,7 @@ public class Score : MonoBehaviour
     public Text scoreText;
   
     private int scoreValue;
-    private int hpValue;
-
+    
 
     // Start is called before the first frame update
     private void Start()
@@ -24,6 +23,10 @@ public class Score : MonoBehaviour
         scoreValue += points;
         scoreText.text = "Score: " + scoreValue;
     }
-    
+
+    public int GetScore() 
+    {
+        return scoreValue;
+    }
 
 }

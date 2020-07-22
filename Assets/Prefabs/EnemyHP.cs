@@ -12,6 +12,7 @@ public class EnemyHP : MonoBehaviour
     private float TimeOfLastShot;
     public float speed = 1f;
     public float DamageAmaount = 10f;
+    public GameObject Particleprefab2;
 
     private Rigidbody2D rb;
 
@@ -34,18 +35,22 @@ public class EnemyHP : MonoBehaviour
     public void Damage(float amount)
     {
         currentHP -= amount;
-       
 
         if (currentHP <= 0f)
         {
 
-            Debug.Log("boom");
-            Destroy(this.gameObject);
+         DestroyEnemy();
         }
     }
     private void shoot()
     {
         Instantiate(bulletprefab, bulletorigin.position, bulletorigin.rotation);
         TimeOfLastShot = Time.time;
+    }
+    public void DestroyEnemy()
+    {
+        GameObject particula = Instantiate(Particleprefab2, transform.position, transform.rotation);
+        Destroy(particula, 5f);
+        Destroy(this.gameObject);
     }
 }

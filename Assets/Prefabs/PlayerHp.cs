@@ -38,9 +38,8 @@ public class PlayerHp : MonoBehaviour
         
         if (currentHP <= 0f)
         {
-            Instantiate(Deathparticleprefab, transform.position, transform.rotation);
-            Debug.Log("game over");
-            Destroy(this.gameObject);
+
+            Death();
         }
     }
     private void shoot() 
@@ -48,6 +47,16 @@ public class PlayerHp : MonoBehaviour
         GameObject particle = Instantiate(bulletprefab, bulletorigin.position, bulletorigin.rotation);
         TimeOfLastShot = Time.time;
 
-        AudioSource.PlayClipAtPoint(disparo, transform.position, 1f);
+        AudioSource.PlayClipAtPoint(disparo, Camera.main.transform.position, 1f);
+    }
+
+    private void Death() 
+    {
+        Instantiate(Deathparticleprefab, transform.position, transform.rotation);
+
+        FindObjectOfType<GameManager>().GameOver();
+        Destroy(this.gameObject);
+
+
     }
 }
